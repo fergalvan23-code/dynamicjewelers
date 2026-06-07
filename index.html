@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Jewelers — San Diego</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #B8860B;
+    --gold-light: #D4A017;
+    --gold-pale: #F9F4E8;
+    --dark: #1A1A1A;
+    --mid: #555;
+    --light: #888;
+    --border: #E8E2D9;
+    --white: #FFFFFF;
+    --bg: #FAFAF8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 5%;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--dark);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--dark);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 2px;
+    font-size: 12px !important;
+    letter-spacing: 0.1em !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--gold) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 55%;
+    height: 100%;
+    background: var(--gold-pale);
+    clip-path: polygon(8% 0, 100% 0, 100% 100%, 0% 100%);
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 520px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 6vw, 76px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    color: var(--dark);
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--mid);
+    line-height: 1.8;
+    margin-bottom: 40px;
+    max-width: 400px;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--dark);
+    color: var(--white);
+    padding: 16px 36px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-primary:hover { background: var(--gold); transform: translateY(-1px); }
+
+  .btn-secondary {
+    display: inline-block;
+    color: var(--dark);
+    padding: 16px 0;
+    font-size: 13px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--dark);
+    transition: color 0.2s, border-color 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-secondary:hover { color: var(--gold); border-color: var(--gold); }
+
+  .hero-badge {
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    text-align: center;
+  }
+
+  .hero-badge-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 1px solid var(--gold);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    animation: rotate 20s linear infinite;
+  }
+
+  @keyframes rotate { to { transform: rotate(360deg); } }
+
+  .badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .badge-text {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  /* SERVICES STRIP */
+  .services-strip {
+    background: var(--dark);
+    padding: 28px 5%;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .strip-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 32px;
+    border-right: 0.5px solid rgba(255,255,255,0.15);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .strip-item:first-child { padding-left: 0; }
+  .strip-item:last-child { border-right: none; }
+
+  .strip-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .strip-item span {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    font-weight: 300;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 100px 5%;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+
+  .section-body {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.9;
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  /* ABOUT */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    background: var(--bg);
+  }
+
+  .about-visual {
+    aspect-ratio: 4/5;
+    background: var(--gold-pale);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-visual-inner {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.3;
+    letter-spacing: -0.05em;
+  }
+
+  .about-accent {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    right: 32px;
+    background: var(--white);
+    padding: 20px 24px;
+    border-left: 2px solid var(--gold);
+  }
+
+  .about-accent-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--dark);
+    line-height: 1;
+  }
+
+  .about-accent-label {
+    font-size: 12px;
+    color: var(--light);
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .stat-card {
+    padding: 24px;
+    border: 0.5px solid var(--border);
+    border-radius: 2px;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--light);
+    letter-spacing: 0.04em;
+  }
+
+  /* CATEGORIES */
+  .categories { background: var(--white); }
+
+  .categories-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .cat-card {
+    background: var(--bg);
+    border-radius: 2px;
+    padding: 40px 32px;
+    border: 0.5px solid var(--border);
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: default;
+  }
+
+  .cat-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-4px);
+  }
+
+  .cat-icon {
+    font-size: 28px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .cat-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .cat-desc {
+    font-size: 13px;
+    color: var(--light);
+    line-height: 1.8;
+  }
+
+  /* BOOKING */
+  .booking {
+    background: var(--dark);
+    color: var(--white);
+  }
+
+  .booking .section-title { color: var(--white); }
+  .booking .section-body { color: rgba(255,255,255,0.5); max-width: 420px; }
+
+  .booking-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .booking-info { padding-top: 8px; }
+
+  .booking-details {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .booking-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 0.5px solid rgba(255,255,255,0.1);
+  }
+
+  .booking-detail:last-child { border-bottom: none; }
+
+  .detail-icon {
+    width: 36px;
+    height: 36px;
+    border: 0.5px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+
+  .detail-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 4px;
+  }
+
+  .detail-value {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 300;
+  }
+
+  /* FORM */
+  .booking-form {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 2px;
+  }
+
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 28px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 0.5px solid var(--border);
+    border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--dark);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--gold);
+  }
+
+  .form-textarea { resize: vertical; min-height: 100px; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-submit {
+    width: 100%;
+    padding: 16px;
+    background: var(--dark);
+    color: var(--white);
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s;
+    margin-top: 8px;
+  }
+
+  .form-submit:hover { background: var(--gold); }
+
+  .form-note {
+    font-size: 11px;
+    color: var(--light);
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  /* SUCCESS */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 32px 0;
+  }
+
+  .success-check {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    border: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 22px;
+  }
+
+  .success-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+
+  .success-sub { font-size: 14px; color: var(--light); }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--gold-pale); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .testimonial-card {
+    background: var(--white);
+    padding: 32px;
+    border-radius: 2px;
+    border: 0.5px solid var(--border);
+  }
+
+  .t-stars {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  .t-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dark);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .t-author {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--light);
+    text-transform: uppercase;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.5);
+    padding: 60px 5% 40px;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 0.5px solid rgba(255,255,255,0.1);
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-desc {
+    font-size: 13px;
+    line-height: 1.9;
+    font-weight: 300;
+    max-width: 280px;
+  }
+
+  .footer-col-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 300;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer-social a {
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+
+  .footer-social a:hover { color: var(--gold); }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero::before { width: 0; }
+    .about { grid-template-columns: 1fr; }
+    .about-visual { display: none; }
+    .categories-grid { grid-template-columns: 1fr 1fr; }
+    .booking-inner { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    .nav-links { display: none; }
+    .hero-badge { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .categories-grid { grid-template-columns: 1fr; }
+    section { padding: 64px 5%; }
+    .booking-form { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><img src="logo.jpeg" alt="Dynamic Jewelers" style="height: 48px; width: auto; display: block;" /></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#booking">Services</a></li>
+    <li><a href="#booking" class="nav-cta">Book Appointment</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">San Diego's Custom Jeweler</p>
+    <h1>Crafted for<br><em>your story.</em></h1>
+    <p class="hero-sub">Gold chains, custom pieces, luxury watches, and fine jewelry — all with the personal attention a chain store can never give you.</p>
+    <div class="hero-actions">
+      <a href="#booking" class="btn-primary">Book Your Appointment</a>
+      <a href="#collections" class="btn-secondary">See Collections</a>
+    </div>
+  </div>
+  <div class="hero-badge">
+    <img src="logo.jpeg" alt="Dynamic Jewelers" style="width: 140px; height: 140px; object-fit: cover; border-radius: 50%; border: 1px solid var(--gold);" />
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="services-strip">
+  <div class="strip-item"><div class="strip-dot"></div><span>Gold Chains</span></div>
+  <div class="strip-item"><div class="strip-dot"></div><span>Custom Design</span></div>
+  <div class="strip-item"><div class="strip-dot"></div><span>Luxury Watches</span></div>
+  <div class="strip-item"><div class="strip-dot"></div><span>Repairs & Resizing</span></div>
+  <div class="strip-item"><div class="strip-dot"></div><span>Financing Available</span></div>
+  <div class="strip-item"><div class="strip-dot"></div><span>Diamonds & Gemstones</span></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-visual fade-up">
+    <img src="logo.jpeg" alt="Dynamic Jewelers" style="width: 160px; height: 160px; object-fit: cover; border-radius: 50%; opacity: 0.6;" />
+    <div class="about-accent">
+      <div class="about-accent-num">Appointment</div>
+      <div class="about-accent-label">Only — Because your time matters</div>
+    </div>
+  </div>
+  <div class="fade-up">
+    <p class="section-label">Who We Are</p>
+    <h2 class="section-title">One jeweler.<br>One standard.</h2>
+    <p class="section-body">At Dynamic Jewelers, you work directly with us — not a floor of strangers rotating in and out. We take the time to understand what you want, build it right, and stand behind every piece we sell or repair.</p>
+    <p class="section-body" style="margin-top: 16px;">Custom projects are our specialty. Whether you have a sketch on a napkin or a CAD-ready design, we bring your vision to life in gold, silver, and precious stones.</p>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">14K</div>
+        <div class="stat-label">Gold — our most popular chain weight</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Custom projects accepted</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">Fast</div>
+        <div class="stat-label">Same-week repairs & resizing</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">0%</div>
+        <div class="stat-label">Financing options available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section class="categories" id="collections">
+  <div class="categories-header">
+    <div class="fade-up">
+      <p class="section-label">What We Carry</p>
+      <h2 class="section-title">Our Collections</h2>
+    </div>
+    <a href="#booking" class="btn-secondary fade-up">Ask About Availability →</a>
+  </div>
+  <div class="categories-grid">
+    <div class="cat-card fade-up">
+      <span class="cat-icon">⛓</span>
+      <div class="cat-name">Gold Chains</div>
+      <p class="cat-desc">Cuban links, figaro, rope, box, and more — in 10K, 14K, and 18K yellow, white, and rose gold.</p>
+    </div>
+    <div class="cat-card fade-up">
+      <span class="cat-icon">💍</span>
+      <div class="cat-name">Rings</div>
+      <p class="cat-desc">Statement rings, bands, signet styles, and fully custom designs built to your specifications.</p>
+    </div>
+    <div class="cat-card fade-up">
+      <span class="cat-icon">📿</span>
+      <div class="cat-name">Necklaces & Pendants</div>
+      <p class="cat-desc">Layered styles, diamond-cut chains, and custom pendant work for any look or occasion.</p>
+    </div>
+    <div class="cat-card fade-up">
+      <span class="cat-icon">🔗</span>
+      <div class="cat-name">Bracelets</div>
+      <p class="cat-desc">ID bracelets, tennis bracelets, Cuban links, and bangle styles for men and women.</p>
+    </div>
+    <div class="cat-card fade-up">
+      <span class="cat-icon">⌚</span>
+      <div class="cat-name">Luxury Watches</div>
+      <p class="cat-desc">Pre-owned and new luxury timepieces. Rolex, and more — ask us what's currently in stock.</p>
+    </div>
+    <div class="cat-card fade-up">
+      <span class="cat-icon">✦</span>
+      <div class="cat-name">Custom Projects</div>
+      <p class="cat-desc">Bring your idea and we'll make it real. From concept to CAD to finished piece — all in-house.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="booking-inner">
+    <div class="booking-info fade-up">
+      <p class="section-label" style="color: var(--gold);">Book an Appointment</p>
+      <h2 class="section-title">Visit us.<br>We're ready for you.</h2>
+      <p class="section-body">We're appointment-only — so when you arrive, we're fully focused on you. No waiting rooms, no distractions.</p>
+      <div class="booking-details">
+        <div class="booking-detail">
+          <div class="detail-icon">📍</div>
+          <div>
+            <div class="detail-label">Location</div>
+            <div class="detail-value">861 6th Ave, Suite 324, San Diego, CA 92101</div>
+          </div>
+        </div>
+        <div class="booking-detail">
+          <div class="detail-icon">📞</div>
+          <div>
+            <div class="detail-label">Phone / WhatsApp</div>
+            <div class="detail-value">(619) 730-5420</div>
+          </div>
+        </div>
+        <div class="booking-detail">
+          <div class="detail-icon">🕐</div>
+          <div>
+            <div class="detail-label">Hours</div>
+            <div class="detail-value">By appointment — flexible scheduling available</div>
+          </div>
+        </div>
+        <div class="booking-detail">
+          <div class="detail-icon">💳</div>
+          <div>
+            <div class="detail-label">Payment</div>
+            <div class="detail-value">All major cards · Cash · Financing available</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking-form fade-up" id="booking-form">
+      <div class="form-title" id="form-title">Request an Appointment</div>
+      <form name="appointment" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="appt-form">
+        <input type="hidden" name="form-name" value="appointment" />
+        <p style="display:none;"><input name="bot-field" /></p>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" name="first-name" class="form-input" placeholder="Maria" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" name="last-name" class="form-input" placeholder="Garcia" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" name="phone" class="form-input" placeholder="(619) 730-5420" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" name="email" class="form-input" placeholder="you@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">I'm interested in</label>
+          <select name="interest" class="form-select">
+            <option value="">Select a category...</option>
+            <option>Gold Chains</option>
+            <option>Custom Design</option>
+            <option>Rings</option>
+            <option>Bracelets</option>
+            <option>Necklaces &amp; Pendants</option>
+            <option>Luxury Watches</option>
+            <option>Jewelry Repair / Resizing</option>
+            <option>Earrings</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Date &amp; Time</label>
+          <input type="text" name="preferred-time" class="form-input" placeholder="e.g. Weekday afternoons, Saturday morning" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tell us more (optional)</label>
+          <textarea name="message" class="form-textarea" placeholder="Describe what you're looking for, your budget, or any custom ideas..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Request Appointment</button>
+        <p class="form-note">We'll confirm within 24 hours via phone or email.</p>
+      </form>
+      <div class="success-msg" id="success-msg" style="display:none;">
+        <div class="success-check">✓</div>
+        <div class="success-title">You're on the list.</div>
+        <p class="success-sub">We'll be in touch within 24 hours to confirm your appointment. See you soon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="fade-up" style="text-align: center; max-width: 480px; margin: 0 auto;">
+    <p class="section-label">What Clients Say</p>
+    <h2 class="section-title">Trusted in San Diego</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-up">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"Dynamic Jewelers hooked me up with a beautiful 14K Cuban link at a price nobody in San Diego could beat. Came back the next week for a bracelet. My go-to from now on."</p>
+      <div class="t-author">— Diego M., San Diego</div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"Needed my ring resized before my anniversary and they had it done the same day. Honest pricing, fast work, and they actually care about their customers."</p>
+      <div class="t-author">— Vanessa L., Chula Vista</div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"Best jeweler in the Gaslamp. I've been to others in the building but Dynamic Jewelers is the only one I trust. Built me a custom pendant from scratch and it came out perfect."</p>
+      <div class="t-author">— Anthony R., National City</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <img src="logo.jpeg" alt="Dynamic Jewelers" style="height: 56px; width: auto; margin-bottom: 16px; display: block;" />
+      <p class="footer-desc">San Diego's custom jeweler. Gold chains, fine jewelry, luxury watches, and personal service that big stores can't match.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Collections</div>
+      <ul class="footer-links">
+        <li><a href="#collections">Gold Chains</a></li>
+        <li><a href="#collections">Custom Design</a></li>
+        <li><a href="#collections">Watches</a></li>
+        <li><a href="#collections">Rings & Bracelets</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Visit Us</div>
+      <ul class="footer-links">
+        <li><a href="#booking">Book Appointment</a></li>
+        <li><a href="https://instagram.com/dynajewelers">@dynajewelers</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Dynamic Jewelers · San Diego, CA</span>
+    <div class="footer-social">
+      <a href="https://instagram.com/dynajewelers">Instagram</a>
+      <a href="#booking">Book Now</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  function submitForm() {
+    const fname = document.getElementById('fname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    if (!fname || (!phone && !email)) {
+      alert('Please enter your name and at least a phone number or email.');
+      return;
+    }
+
+    const fields = document.querySelectorAll('.form-group, .form-submit, .form-title, .form-note');
+    fields.forEach(f => f.style.display = 'none');
+    document.getElementById('success-msg').style.display = 'block';
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
